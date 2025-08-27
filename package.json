@@ -1,0 +1,40 @@
+{
+  "name": "hms-hospital-management-system",
+  "version": "1.0.0",
+  "description": "Full-stack Hospital Management System with patient consultations",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run build:frontend && npm run build:admin",
+    "build:frontend": "cd frontend && npm run build",
+    "build:admin": "cd admin && npm run build",
+    "deploy": "bash deploy.sh",
+    "start:backend": "cd backend && npm start",
+    "start:frontend": "cd frontend && npm run dev",
+    "start:admin": "cd admin && npm run dev",
+    "dev": "concurrently \"npm run start:backend\" \"npm run start:frontend\" \"npm run start:admin\"",
+    "install:all": "npm install && cd frontend && npm install && cd ../admin && npm install && cd ../backend && npm install",
+    "clean": "rm -rf */dist */build */node_modules node_modules"
+  },
+  "keywords": [
+    "hospital",
+    "management",
+    "consultation",
+    "healthcare",
+    "react",
+    "nodejs",
+    "mongodb"
+  ],
+  "author": "Ashish Singh Rawat",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ashish07-singh/MediDoc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ashish07-singh/MediDoc/issues"
+  },
+  "homepage": "https://github.com/ashish07-singh/MediDoc#readme"
+}
