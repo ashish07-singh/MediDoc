@@ -8,7 +8,7 @@ import { v2 as cloudinary } from 'cloudinary';
 import sendEmail from "../utils/sendEmail.js"; 
 
 // === Start Chat (Replaces Payment System) ===
-const startChat = async (req, res) => {
+export const startChat = async (req, res) => {
     try {
         const userId = req.user.id;
         const { doctorId } = req.body;
@@ -44,7 +44,7 @@ const startChat = async (req, res) => {
 
 // === User Profile Management (Corrected for Security) ===
 
-const getProfile = async (req, res) => {
+export const getProfile = async (req, res) => {
     try {
         // SECURITY FIX: Get the userId from the authenticated token.
         const userId = req.user.id;
@@ -57,7 +57,7 @@ const getProfile = async (req, res) => {
     }
 };
 
-const updateProfile = async (req, res) => {
+export const updateProfile = async (req, res) => {
     try {
         // SECURITY FIX: Get the userId from the authenticated token.
         const userId = req.user.id;
@@ -86,7 +86,7 @@ const updateProfile = async (req, res) => {
 
 // --- The functions below are already perfect. No changes were needed. ---
 
-const sendChatMessage = async (req, res) => {
+export const sendChatMessage = async (req, res) => {
     try {
         const { chatId, text } = req.body;
         const userId = req.user.id;
@@ -106,7 +106,7 @@ const sendChatMessage = async (req, res) => {
     }
 };
 
-const getUserChats = async (req, res) => {
+export const getUserChats = async (req, res) => {
     try {
         const userId = req.user.id;
         const chats = await Chat.find({ userId, paymentStatus: true}).populate('doctorId', 'name image speciality').sort({ updatedAt: -1 });
@@ -116,7 +116,7 @@ const getUserChats = async (req, res) => {
         res.status(500).json({ success: false, message: "Error fetching chats" });
     }
 };
-const getSingleChat = async (req, res) => {
+export const getSingleChat = async (req, res) => {
     try {
         const { chatId } = req.params;
         const userId = req.user.id;
@@ -134,7 +134,7 @@ const getSingleChat = async (req, res) => {
 };
 
 
-const requestUserRegistrationOTP = async (req, res) => {
+export const requestUserRegistrationOTP = async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
@@ -180,7 +180,7 @@ const requestUserRegistrationOTP = async (req, res) => {
     }
 };
 
-const verifyUserOTP = async (req, res) => {
+export const verifyUserOTP = async (req, res) => {
     try {
         const { email, otp } = req.body;
         const user = await userModel.findOne({ email });
@@ -216,7 +216,7 @@ const verifyUserOTP = async (req, res) => {
     }
 };
 
-const loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await userModel.findOne({ email });
@@ -236,18 +236,7 @@ const loginUser = async (req, res) => {
 };
 
 
-// === Final Export List ===
-export {
-    loginUser,
-    requestUserRegistrationOTP, 
-    verifyUserOTP, 
-    getProfile,
-    updateProfile,
-    startChat,
-    getUserChats,
-    sendChatMessage,
-    getSingleChat
-};
+
 
 // Forgot Password - Send OTP
 export const forgotPassword = async (req, res) => {
@@ -289,7 +278,11 @@ export const forgotPassword = async (req, res) => {
             <p>If you didn't request this, please ignore this email.</p>
         `;
 
-        await sendEmail(user.email, emailSubject, emailBody);
+        await sendEmail({ 
+            email: user.email, 
+            subject: emailSubject, 
+            message: emailBody 
+        });
 
         res.status(200).json({
             success: true,
@@ -355,7 +348,6 @@ export const resetPassword = async (req, res) => {
             success: true,
             message: "Password reset successful"
         });
-
     } catch (error) {
         console.error("Reset password error:", error);
         res.status(500).json({

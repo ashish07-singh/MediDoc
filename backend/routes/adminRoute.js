@@ -1,50 +1,17 @@
 import express from 'express';
-import upload from '../middleware/multer.js';
+import { loginAdmin, adminDashboard, allDoctors, getChatSessions, forgotPassword, resetPassword } from '../controllers/adminController.js';
 import authAdmin from '../middleware/authAdmin.js';
 
-// --- Imports ---
-// 1. Import the CORRECT functions from the adminController.
-//    'appointmentsAdmin' and 'appointmentCancel' are replaced.
-import { 
-  loginAdmin,
-  addDoctor,
-  allDoctors,
-  adminDashboard,
-  getChatSessions,
-  getDoctorProfileForAdmin,
-  updateDoctorProfileByAdmin,
-  forgotPassword,
-  resetPassword
-} from '../controllers/adminController.js';
+const router = express.Router();
 
-// 2. We can also import this from the doctorController if the admin needs it.
-import { changeAvailablity } from '../controllers/doctorController.js';
+// Public routes
+router.post('/login', loginAdmin);
+router.post('/forgot-password', forgotPassword);
+router.post('/reset-password', resetPassword);
 
-const adminRouter = express.Router();
+// Protected routes
+router.get('/dashboard', authAdmin, adminDashboard);
+router.get('/doctors', authAdmin, allDoctors);
+router.get('/consultations', authAdmin, getChatSessions);
 
-// --- Public Route ---
-adminRouter.post("/login", loginAdmin);
-adminRouter.post('/forgot-password', forgotPassword);
-adminRouter.post('/reset-password', resetPassword);
-
-// --- Protected Admin Routes ---
-// All routes below this line will require an admin to be logged in.
-adminRouter.use(authAdmin);
-
-// --- Dashboard ---
-adminRouter.get("/dashboard", adminDashboard);
-
-// --- Doctor Management ---
-adminRouter.post("/add-doctor", addDoctor);
-adminRouter.get("/all-doctors", allDoctors);
-adminRouter.get("/doctor/:id", getDoctorProfileForAdmin);
-adminRouter.patch("/doctor/:id", upload.single('image'), updateDoctorProfileByAdmin); // This is the new route
-adminRouter.post("/change-availability", changeAvailablity); // Admin can change doctor availability
-
-// --- Consultation / Chat Management ---
-// This is the new route to get a list of all paid chat sessions.
-adminRouter.get("/consultations", getChatSessions);
-
-// The '/cancel-appointment' route has been removed as it is no longer needed.
-
-export default adminRouter;
+export default router;

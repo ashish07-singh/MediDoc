@@ -228,6 +228,23 @@ const doctorList = async (req, res) => {
     }
 }
 
+// Public route to get doctor profile by ID
+const doctorProfile = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const doctor = await doctorModel.findById(id).select(['-password', '-email', '-otp', '-otpExpires']);
+        
+        if (!doctor) {
+            return res.status(404).json({ success: false, message: "Doctor not found" });
+        }
+        
+        res.json({ success: true, doctor });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ success: false, message: error.message });
+    }
+}
+
 const changeAvailablity = async (req, res) => {
     try {
         const { docId } = req.body;
@@ -240,7 +257,7 @@ const changeAvailablity = async (req, res) => {
     }
 }
 
-const doctorProfile = async (req, res) => {
+const getDoctorProfile = async (req, res) => {
     try {
         const docId = req.doctor.id;
         const profileData = await doctorModel.findById(docId).select('-password');
@@ -321,18 +338,21 @@ export {
     requestDoctorRegistrationOTP,
     verifyDoctorOTP,
     loginDoctor,
-    doctorList,
-    changeAvailablity,
-    doctorProfile,
     updateDoctorProfile,
-    getDoctorChats,
+    doctorList,
+    doctorProfile,
+    changeAvailablity,
+    getDoctorProfile,
     doctorDashboard,
-    doctorReplyToChat,
+    getDoctorChats,
     getSingleDoctorChat,
+    doctorReplyToChat,
+    forgotPassword,
+    resetPassword
 };
 
 // Forgot Password - Send OTP
-export const forgotPassword = async (req, res) => {
+const forgotPassword = async (req, res) => {
     try {
         const { email } = req.body;
 
@@ -371,7 +391,11 @@ export const forgotPassword = async (req, res) => {
             <p>If you didn't request this, please ignore this email.</p>
         `;
 
-        await sendEmail(doctor.email, emailSubject, emailBody);
+        await sendEmail({ 
+            email: doctor.email, 
+            subject: emailSubject, 
+            message: emailBody 
+        });
 
         res.status(200).json({
             success: true,
@@ -388,7 +412,7 @@ export const forgotPassword = async (req, res) => {
 };
 
 // Reset Password - Verify OTP and update password
-export const resetPassword = async (req, res) => {
+const resetPassword = async (req, res) => {
     try {
         const { email, otp, password } = req.body;
 

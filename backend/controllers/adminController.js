@@ -5,6 +5,7 @@ import userModel from "../models/userModel.js";
 // --- THIS IS THE MOST LIKELY FIX: Correctly import from the file, not the folder ---
 import Chat from "../models/Chat.js"; 
 import cloudinary from '../config/cloudinary.js';
+import sendEmail from '../utils/sendEmail.js';
 
 // === API for admin login ===
 const loginAdmin = async (req, res) => {
@@ -173,7 +174,7 @@ const updateDoctorProfileByAdmin = async (req, res) => {
 };
 
 // Forgot Password - Send OTP
-export const forgotPassword = async (req, res) => {
+const forgotPassword = async (req, res) => {
     try {
         const { email } = req.body;
 
@@ -214,7 +215,11 @@ export const forgotPassword = async (req, res) => {
             <p>If you didn't request this, please ignore this email.</p>
         `;
 
-        await sendEmail(email, emailSubject, emailBody);
+        await sendEmail({ 
+            email: email, 
+            subject: emailSubject, 
+            message: emailBody 
+        });
 
         res.status(200).json({
             success: true,
@@ -231,7 +236,7 @@ export const forgotPassword = async (req, res) => {
 };
 
 // Reset Password - Verify OTP and update password
-export const resetPassword = async (req, res) => {
+const resetPassword = async (req, res) => {
     try {
         const { email, otp, password } = req.body;
 
@@ -298,5 +303,7 @@ export {
     allDoctors,
     adminDashboard,
     getDoctorProfileForAdmin,
-    updateDoctorProfileByAdmin
+    updateDoctorProfileByAdmin,
+    forgotPassword,
+    resetPassword
 }
