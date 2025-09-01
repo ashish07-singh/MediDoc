@@ -79,14 +79,14 @@ const MyConsultations = () => {
                                         </div>
                                     </div>
                                     <div className="text-gray-600">
-                                        <p className="font-medium">Consultation Fee Paid:</p>
-                                        <p className="text-lg font-semibold text-green-600">₹{chat.amount}</p>
-                                        <p className="mt-2 text-sm">
-                                            Status: 
-                                            <span className={`font-medium ${isExpired ? 'text-red-500' : 'text-green-600'}`}>
-                                                {isExpired ? ' Expired' : ' Active'}
+                                        <div className="flex items-center justify-between">
+                                            <p className="font-medium">Status:</p>
+                                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                                                chat.paymentStatus ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                                            }`}>
+                                                {chat.paymentStatus ? 'Active' : 'Pending'}
                                             </span>
-                                        </p>
+                                        </div>
                                         {!isExpired && (
                                             <p className="text-xs text-gray-500">
                                                 Expires on: {new Date(chat.expiresAt).toLocaleString()}

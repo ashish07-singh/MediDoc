@@ -176,9 +176,9 @@ const loginDoctor = async (req, res) => {
 const updateDoctorProfile = async (req, res) => {
     try {
         const docId = req.doctor.id;
-        const { speciality, degree, experience, about, fees, available } = req.body;
+        const { speciality, degree, experience, about, available } = req.body;
 
-        let updateFields = { speciality, degree, experience, about, fees, available };
+        let updateFields = { speciality, degree, experience, about, available };
 
         // --- FIX: When the profile is updated, mark it as complete. ---
         // This stops the forced redirect to the profile page on subsequent logins.

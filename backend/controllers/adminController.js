@@ -137,7 +137,7 @@ const getDoctorProfileForAdmin = async (req, res) => {
 const updateDoctorProfileByAdmin = async (req, res) => {
     try {
         const { id } = req.params; // Doctor ID from URL
-        const { name, speciality, degree, experience, fees, about, available } = req.body;
+        const { name, speciality, degree, experience, about, available } = req.body;
 
         let imageUrl = req.body.image; // Default to existing image if not updated
 
@@ -155,7 +155,6 @@ const updateDoctorProfileByAdmin = async (req, res) => {
             speciality,
             degree,
             experience,
-            fees,
             about,
             available,
             image: imageUrl // Update image URL

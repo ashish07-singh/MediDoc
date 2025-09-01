@@ -202,8 +202,8 @@ const DoctorProfile = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <InfoField label="Speciality" value={profileData.speciality} isEdit={isEdit} onChange={(e) => setProfileData(p => ({ ...p, speciality: e.target.value }))} />
                             <InfoField label="Degree" value={profileData.degree} isEdit={isEdit} onChange={(e) => setProfileData(p => ({ ...p, degree: e.target.value }))} />
-                            <InfoField label="Years of Experience" type="number" value={profileData.experience} isEdit={isEdit} onChange={(e) => setProfileData(p => ({ ...p, experience: e.target.value }))} />
-                            <InfoField label="Consultation Fee" type="number" value={profileData.fees} isEdit={isEdit} onChange={(e) => setProfileData(p => ({ ...p, fees: e.target.value }))} prefix={currency} />
+                            <InfoField label="Experience" type="text" value={profileData.experience} isEdit={isEdit} onChange={(e) => setProfileData(p => ({ ...p, experience: e.target.value }))} />
+                            <InfoField label="About" type="textarea" value={profileData.about} isEdit={isEdit} onChange={(e) => setProfileData(p => ({ ...p, about: e.target.value }))} />
                         </div>
                     </div>
                     <div>

@@ -27,12 +27,7 @@ const faqData = [
     answer: 'Scheduling is easy! After logging in, browse our list of doctors, select the one that fits your needs, view their available time slots, and book your appointment. You will receive a confirmation email and a reminder before your session.',
     category: 'For Patients',
   },
-  {
-    id: 5,
-    question: 'What are the consultation fees?',
-    answer: 'Consultation fees vary depending on the doctor\'s specialty and experience. The fee for each doctor is clearly listed on their profile. Payment is required at the time of booking to confirm your appointment.',
-    category: 'For Patients',
-  },
+
   {
     id: 6,
     question: 'Can I get a prescription through the live chat?',
@@ -54,7 +49,7 @@ const faqData = [
   {
     id: 9,
     question: 'How are payments handled for consultants?',
-    answer: 'Payments are processed securely through our platform. Consultants receive their earnings on a bi-weekly basis directly to their linked bank account, minus a small platform service fee.',
+    answer: 'Since consultations are free for patients, doctors provide their services as part of our healthcare community. We focus on connecting qualified medical professionals with patients who need care.',
     category: 'For Doctors',
   },
   {
@@ -90,7 +85,7 @@ const faqData = [
   {
     id: 15,
     question: 'How is my payment information stored?',
-    answer: 'We do not store your full credit card details on our servers. All payments are handled by a certified, PCI-compliant payment processor, ensuring the highest level of security for your financial information.',
+    answer: 'Since consultations are completely free, no payment information is required or stored. Your personal and medical information is protected with end-to-end encryption and industry-standard security measures.',
     category: 'Privacy & Security',
   },
 ];

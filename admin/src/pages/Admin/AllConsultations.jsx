@@ -23,11 +23,10 @@ const AllConsultations = () => {
             <h1 className='mb-4 text-2xl font-bold text-gray-800'>All Consultations</h1>
             <div className='bg-white border rounded-lg shadow-md text-sm max-h-[80vh] overflow-y-scroll'>
                 {/* Table Header */}
-                <div className='hidden sm:grid grid-cols-5 gap-4 py-3 px-6 border-b font-semibold text-gray-600 sticky top-0 bg-gray-50'>
+                <div className='grid grid-cols-4 gap-4 items-center px-6 py-4 border-b text-gray-600 font-medium'>
                     <p>Patient</p>
                     <p>Doctor</p>
-                    <p>Date Initiated</p>
-                    <p>Fee Paid</p>
+                    <p>Date</p>
                     <p>Status</p>
                 </div>
 
@@ -59,8 +58,6 @@ const AllConsultations = () => {
                                 </div>
                                 {/* Date */}
                                 <p className="text-gray-600">{new Date(chat.createdAt).toLocaleString()}</p>
-                                {/* Fee */}
-                                <p className="font-semibold text-green-600">{currency}{chat.amount}</p>
                                 {/* Status */}
                                 <div>
                                     <span className={`px-2 py-1 text-xs font-semibold rounded-full ${isExpired ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
