@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import { useNavigate, useParams } from 'react-router-dom';
+import assets from '../assets/assets';
 
 // List of available specialities for easier management
 const specialityList = [
@@ -109,8 +110,13 @@ const Doctors = () => {
                                         <div className='relative'>
                                             <img
                                                 className='w-full h-56 object-cover'
-                                                src={item.image}
+                                                src={item.image || assets.default_doctor}
                                                 alt={item.name}
+                                                onError={(e) => {
+                                                    if (e.target.src !== assets.default_doctor) {
+                                                        e.target.src = assets.default_doctor;
+                                                    }
+                                                }}
                                             />
                                             <div
                                                 className={`absolute top-3 right-3 flex items-center gap-2 text-xs px-2 py-1 rounded-full ${

@@ -27,6 +27,6 @@ export const assets = {
     appointments_icon,
     earning_icon,
     // Simple SVG fallback images - no network requests needed
-    default_user: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="%236B7280"/><circle cx="20" cy="16" r="6" fill="white"/><path d="M8 32c0-6.627 5.373-12 12-12s12 5.373 12 12" fill="white"/></svg>',
-    default_doctor: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="%236B7280"/><circle cx="20" cy="16" r="6" fill="white"/><path d="M8 32c0-6.627 5.373-12 12-12s12 5.373 12 12" fill="white"/><circle cx="30" cy="16" r="4" fill="white"/><path d="M22 28c0-2.209 1.791-4 4-4s4 1.791 4 4" fill="white"/></svg>'
+    default_user: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZmlsbD0iIzZCNzI4MCIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMTYiIHI9IjYiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTggMzJjMC02LjYyNyA1LjM3My0xMiAxMi0xMnMxMiA1LjM3MyAxMiAxMiIgZmlsbD0id2hpdGUiLz48L3N2Zz4=',
+    default_doctor: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZmlsbD0iIzZCNzI4MCIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMTYiIHI9IjYiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTggMzJjMC02LjYyNyA1LjM3My0xMiAxMi0xMnMxMiA1LjM3MyAxMiAxMiIgZmlsbD0id2hpdGUiLz48Y2lyY2xlIGN4PSIzMCIgY3k9IjE2IiByPSI0IiBmaWxsPSJ3aGl0ZSIvPjxwYXRoIGQ9Ik0yMiAyOGMwLTIuMjA5IDEuNzkxLTQgNC00czQgMS43OTEgNCA0IiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg=='
 }

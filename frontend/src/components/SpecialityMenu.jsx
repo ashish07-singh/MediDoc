@@ -23,6 +23,11 @@ const SpecialityMenu = () => {
                             className='w-16 sm:w-24 mb-2 rounded-full shadow-md hover:scale-105 transition-transform duration-300'
                             src={item.image}
                             alt={item.speciality}
+                            onError={(e) => {
+                                if (e.target.src !== assets.default_doctor) {
+                                    e.target.src = assets.default_doctor;
+                                }
+                            }}
                         />
                         <p>{item.speciality}</p>
                     </Link>

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
+import assets from '../assets/assets';
 
 const TopDoctors = () => {
     const navigate = useNavigate();
@@ -31,8 +32,13 @@ const TopDoctors = () => {
                             <div className='relative'>
                                 <img
                                     className='w-full h-48 object-cover'
-                                    src={item.image}
+                                    src={item.image || assets.default_doctor}
                                     alt={item.name}
+                                    onError={(e) => {
+                                        if (e.target.src !== assets.default_doctor) {
+                                            e.target.src = assets.default_doctor;
+                                        }
+                                    }}
                                 />
                                 <div
                                     className={`absolute top-2 right-2 flex items-center gap-2 text-xs px-2 py-1 rounded-full ${
