@@ -12,7 +12,9 @@ import {
   adminDashboard,
   getChatSessions,
   getDoctorProfileForAdmin,
-  updateDoctorProfileByAdmin
+  updateDoctorProfileByAdmin,
+  forgotPassword,
+  resetPassword
 } from '../controllers/adminController.js';
 
 // 2. We can also import this from the doctorController if the admin needs it.
@@ -22,6 +24,8 @@ const adminRouter = express.Router();
 
 // --- Public Route ---
 adminRouter.post("/login", loginAdmin);
+adminRouter.post('/forgot-password', forgotPassword);
+adminRouter.post('/reset-password', resetPassword);
 
 // --- Protected Admin Routes ---
 // All routes below this line will require an admin to be logged in.

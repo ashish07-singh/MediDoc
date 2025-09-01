@@ -248,3 +248,119 @@ export {
     sendChatMessage,
     getSingleChat
 };
+
+// Forgot Password - Send OTP
+export const forgotPassword = async (req, res) => {
+    try {
+        const { email } = req.body;
+
+        if (!email) {
+            return res.status(400).json({
+                success: false,
+                message: "Email is required"
+            });
+        }
+
+        // Check if user exists
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found with this email"
+            });
+        }
+
+        // Generate OTP
+        const otp = Math.floor(100000 + Math.random() * 900000).toString();
+        const otpExpires = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+
+        // Save OTP to user
+        user.otp = otp;
+        user.otpExpires = otpExpires;
+        await user.save();
+
+        // Send OTP via email
+        const emailSubject = "Password Reset OTP";
+        const emailBody = `
+            <h2>Password Reset Request</h2>
+            <p>You have requested to reset your password.</p>
+            <p>Your OTP is: <strong>${otp}</strong></p>
+            <p>This OTP will expire in 10 minutes.</p>
+            <p>If you didn't request this, please ignore this email.</p>
+        `;
+
+        await sendEmail(user.email, emailSubject, emailBody);
+
+        res.status(200).json({
+            success: true,
+            message: "Password reset OTP sent to your email"
+        });
+
+    } catch (error) {
+        console.error("Forgot password error:", error);
+        res.status(500).json({
+            success: false,
+            message: "Failed to send password reset OTP"
+        });
+    }
+};
+
+// Reset Password - Verify OTP and update password
+export const resetPassword = async (req, res) => {
+    try {
+        const { email, otp, password } = req.body;
+
+        if (!email || !otp || !password) {
+            return res.status(400).json({
+                success: false,
+                message: "Email, OTP, and new password are required"
+            });
+        }
+
+        // Check if user exists
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found with this email"
+            });
+        }
+
+        // Check if OTP is valid and not expired
+        if (user.otp !== otp) {
+            return res.status(400).json({
+                success: false,
+                message: "Invalid OTP"
+            });
+        }
+
+        if (user.otpExpires < new Date()) {
+            return res.status(400).json({
+                success: false,
+                message: "OTP has expired. Please request a new one"
+            });
+        }
+
+        // Hash new password
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        // Update password and clear OTP
+        user.password = hashedPassword;
+        user.otp = undefined;
+        user.otpExpires = undefined;
+        await user.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Password reset successful"
+        });
+
+    } catch (error) {
+        console.error("Reset password error:", error);
+        res.status(500).json({
+            success: false,
+            message: "Failed to reset password"
+        });
+    }
+};
