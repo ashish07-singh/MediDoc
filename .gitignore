@@ -111,3 +111,4 @@ Thumbs.db
 
 # Uploads directory
 uploads/ backend/.env
+frontend/.env
