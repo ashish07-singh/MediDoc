@@ -39,11 +39,11 @@ import Neurologist from './Neurologist.svg'
 import Pediatricians from './Pediatricians.svg'
 import placeholderDoctor from './placeholder_doctor.svg';
 
-// named export expected by several components
+// named export expected by some components
 export const default_doctor = placeholderDoctor;
 
-// keep a default export for files using `import assets from '../assets/assets'`
-const assets = {
+// create the object and export it both as a named export and the default
+const assetsObj = {
   default_doctor,
   appointment_img,
   header_img,
@@ -67,7 +67,8 @@ const assets = {
   default_user: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZmlsbD0iIzZCNzI4MCIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMTYiIHI9IjYiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTggMzJjMC02LjYyNyA1LjM3My0xMiAxMi0xMnMxMiA1LjM3MyAxMiAxMiIgZmlsbD0id2hpdGUiLz48L3N2Zz4=',
 };
 
-export default assets;
+export const assets = assetsObj; // <- NEW named export
+export default assetsObj;
 
 export const specialityData = [
     {
