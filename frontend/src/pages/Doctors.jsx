@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import { useNavigate, useParams } from 'react-router-dom';
-import assets from '../assets/assets';
+import * as assets from '../assets/assets';
 
 // List of available specialities for easier management
 const specialityList = [

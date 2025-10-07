@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import * as assets from '../assets/assets';
+import placeholderDoctor from '../assets/placeholder_doctor.svg';
 
 const TopDoctors = () => {
     const navigate = useNavigate();
@@ -32,8 +33,8 @@ const TopDoctors = () => {
                             <div className='relative'>
                                 <img
                                     className='w-full h-48 object-cover'
-                                    src={item.image || assets.default_doctor}
-                                    alt={item.name}
+                                    src={placeholderDoctor}
+                                    alt='doctor'
                                     onError={(e) => {
                                         if (e.target.src !== assets.default_doctor) {
                                             e.target.src = assets.default_doctor;
@@ -56,7 +57,7 @@ const TopDoctors = () => {
                                 </div>
                             </div>
                             <div className='p-4'>
-                                <p className='text-xl font-semibold text-gray-800  mb-1'>
+                                <p className='text-xl font-semibold text-gray-800 mb-1'>
                                     {item.name}
                                 </p>
                                 <p className='text-md text-gray-600'>{item.speciality}</p>
