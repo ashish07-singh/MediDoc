@@ -37,32 +37,37 @@ import General_physician from './General_physician.svg'
 import Gynecologist from './Gynecologist.svg'
 import Neurologist from './Neurologist.svg'
 import Pediatricians from './Pediatricians.svg'
-import placeholderDoctor from './placeholder_doctor.svg'
+import placeholderDoctor from './placeholder_doctor.svg';
 
+// named export expected by several components
+export const default_doctor = placeholderDoctor;
 
-export const assets = {
-    appointment_img,
-    header_img,
-    group_profiles,
-    logo,
-    chats_icon,
-    verified_icon,
-    info_icon,
-    profile_pic,
-    arrow_icon,
-    contact_image,
-    about_image,
-    menu_icon,
-    cross_icon,
-    dropdown_icon,
-    upload_icon,
-    stripe_logo,
-    razorpay_logo,
-    login_image,
-    // Default fallback images
-    default_user: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZmlsbD0iIzZCNzI4MCIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMTYiIHI9IjYiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTggMzJjMC02LjYyNyA1LjM3My0xMiAxMi0xMnMxMiA1LjM3MyAxMiAxMiIgZmlsbD0id2hpdGUiLz48L3N2Zz4=',
-    default_doctor: placeholderDoctor
-}
+// keep a default export for files using `import assets from '../assets/assets'`
+const assets = {
+  default_doctor,
+  appointment_img,
+  header_img,
+  group_profiles,
+  logo,
+  chats_icon,
+  verified_icon,
+  info_icon,
+  profile_pic,
+  arrow_icon,
+  contact_image,
+  about_image,
+  menu_icon,
+  cross_icon,
+  dropdown_icon,
+  upload_icon,
+  stripe_logo,
+  razorpay_logo,
+  login_image,
+  // Default fallback images
+  default_user: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIyMCIgZmlsbD0iIzZCNzI4MCIvPjxjaXJjbGUgY3g9IjIwIiBjeT0iMTYiIHI9IjYiIGZpbGw9IndoaXRlIi8+PHBhdGggZD0iTTggMzJjMC02LjYyNyA1LjM3My0xMiAxMi0xMnMxMiA1LjM3MyAxMiAxMiIgZmlsbD0id2hpdGUiLz48L3N2Zz4=',
+};
+
+export default assets;
 
 export const specialityData = [
     {
