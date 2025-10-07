@@ -110,4 +110,4 @@ Thumbs.db
 *.temp
 
 # Uploads directory
-uploads/ 
+uploads/ backend/.env
