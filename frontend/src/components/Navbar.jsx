@@ -25,7 +25,7 @@ const Navbar = () => {
       isExternal: true, // Flag for external links
     },
      {
-      path: 'https://doctorfrontnew.vercel.app/login',
+      path: 'https://medidoc-yn2e.onrender.com/login',
       label: 'PATIENT LOGIN',
       isExternal: true, // Flag for external links
     }
